@@ -4,18 +4,29 @@ import AboutUs from "./components/AboutUs";
 import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
 
+import { useState } from "react";
+
 function App() {
+  const [showProductList, setShowProductList] = useState(false);
+
   return (
     <div className="landing-page">
-      <h1>Paradise Nursery</h1>
+      {!showProductList ? (
+        <>
+          <h1>Welcome to Paradise Nursery</h1>
 
-      <button>Get Started</button>
+          <button onClick={() => setShowProductList(true)}>
+            Get Started
+          </button>
 
-      <AboutUs />
-
-      <ProductList />
-
-      <CartItem />
+          <AboutUs />
+        </>
+      ) : (
+        <>
+          <ProductList />
+          <CartItem />
+        </>
+      )}
     </div>
   );
 }
